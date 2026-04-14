@@ -1,0 +1,98 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section id="home" class="py-5">
+    <div class="container">
+        <h1>Holy Cookies</h1>
+        <p>Cookies artesanais feitos para adoçar momentos especiais.</p>
+
+        <a href="https://wa.me/seu-numero" class="btn btn-primary">Fazer pedido</a>
+        <a href="https://instagram.com/seu-perfil" class="btn btn-outline-dark">Instagram</a>
+    </div>
+</section>
+
+<section id="produtos" class="py-5">
+    <div class="container">
+        <h2>Produtos</h2>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/images/cookie.jpg" class="card-img-top" alt="Cookie de Nutella">
+                    <div class="card-body">
+                        <h5 class="card-title">Cookie de Nutella</h5>
+                        <p class="card-text">Massa amanteigada com recheio cremoso.</p>
+                        <p><strong>R$ 12,00</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/images/cookie-redvelvet.jpg" class="card-img-top" alt="Cookie Red Velvet">
+                    <div class="card-body">
+                        <h5 class="card-title">Cookie Red Velvet</h5>
+                        <p class="card-text">Sabor marcante com massa macia e recheio especial.</p>
+                        <p><strong>R$ 14,00</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/images/cookie-ovomaltine.jpg" class="card-img-top" alt="Cookie de Ovomaltine">
+                    <div class="card-body">
+                        <h5 class="card-title">Cookie de Ovomaltine</h5>
+                        <p class="card-text">Massa de chocolate com crocância irresistível.</p>
+                        <p><strong>R$ 13,00</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="como-pedir" class="py-5">
+    <div class="container">
+        <h2>Como pedir</h2>
+
+        <ol>
+            <li>Escolha seus sabores favoritos.</li>
+            <li>Chame a gente no WhatsApp.</li>
+            <li>Combine a entrega ou retirada.</li>
+        </ol>
+
+        <a href="https://wa.me/seu-numero" class="btn btn-success">Pedir pelo WhatsApp</a>
+    </div>
+</section>
+
+<section id="sobre" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Sobre nós</h2>
+                <p>
+                    A Holy Cookies nasceu do desejo de transformar carinho, sabor e momentos especiais
+                    em cookies artesanais feitos com atenção aos detalhes.
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <img src="~/images/sobre-nos.jpg" class="img-fluid rounded" alt="Sobre a Holy Cookies">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contato" class="py-5">
+    <div class="container">
+        <h2>Contato</h2>
+        <p>Fale com a Holy Cookies e faça seu pedido.</p>
+
+        <a href="https://wa.me/seu-numero" class="btn btn-success">WhatsApp</a>
+        <a href="https://instagram.com/seu-perfil" class="btn btn-outline-dark">Instagram</a>
+    </div>
+</section>
