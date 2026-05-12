@@ -4,13 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HolyCookies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HolyCookies.styles.css" asp-append-version="true" />
+    <script>window.WHATSAPP_URL = '@SocialOptions.Value.WhatsAppUrl';</script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3 fixed-top">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">HolyCookies</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,7 +22,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="menu">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" href="#home">Home</a>
                         </li>
@@ -34,20 +38,27 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contato">Contato</a>
                         </li>
+                        <li class="nav-item ms-2">
+                            <button class="btn btn-outline-light position-relative" id="cart-btn" onclick="openCart()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </svg>
+                                <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display:none">0</span>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - HolyCookies - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1 fw-semibold" style="font-family:'Playfair Display',serif; font-size:1.2rem;">Holy Cookies 🍪</p>
+            <p class="mb-0 small">&copy; 2026 — Feito com carinho. <a asp-area="" asp-page="/Privacy">Privacidade</a></p>
         </div>
     </footer>
 
@@ -56,5 +67,46 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="cartOffcanvasLabel">Seu Carrinho</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div id="cart-items" class="flex-grow-1">
+                <p class="text-muted">Seu carrinho está vazio.</p>
+            </div>
+
+            <div class="border-top pt-3 mt-3">
+                <h6 class="fw-bold mb-2">Endereço de entrega</h6>
+                <div class="input-group mb-2">
+                    <input type="text" id="cep-input" class="form-control form-control-sm" placeholder="CEP (ex: 01001-000)" maxlength="9">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" id="cep-search-btn">Buscar</button>
+                </div>
+                <div id="cep-error" class="text-danger small mb-2" style="display:none">CEP não encontrado. Verifique e tente novamente.</div>
+                <div id="cep-loading" class="text-muted small mb-2" style="display:none">Buscando...</div>
+                <div id="address-result" style="display:none">
+                    <p id="address-display" class="small text-muted mb-2"></p>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <input type="text" id="address-number" class="form-control form-control-sm" placeholder="Número" maxlength="10">
+                        </div>
+                        <div class="col-8">
+                            <input type="text" id="address-complement" class="form-control form-control-sm" placeholder="Complemento (opcional)" maxlength="60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top pt-3 mt-3">
+                <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                    <span>Total</span>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button class="btn btn-success w-100" id="whatsapp-btn" onclick="sendToWhatsApp()">Finalizar pelo WhatsApp</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,53 +1,101 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<section id="home" class="py-5">
-    <div class="container">
+<section id="home">
+    <div class="container text-center">
+        <p class="hero-eyebrow">Cookies artesanais ✨</p>
         <h1>Holy Cookies</h1>
-        <p>Cookies artesanais feitos para adoçar momentos especiais.</p>
-
-        <a href="https://wa.me/seu-numero" class="btn btn-primary">Fazer pedido</a>
-        <a href="https://instagram.com/seu-perfil" class="btn btn-outline-dark">Instagram</a>
+        <p class="hero-sub">Feitos com carinho para adoçar os seus momentos especiais.</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="@SocialOptions.Value.WhatsAppUrl" class="btn btn-primary btn-lg">Fazer pedido</a>
+            <a href="@SocialOptions.Value.InstagramUrl" class="btn btn-outline-dark btn-lg" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
     </div>
 </section>
 
-<section id="produtos" class="py-5">
+<section id="produtos">
     <div class="container">
-        <h2>Produtos</h2>
+        <div class="section-title">
+            <h2>Nossos Sabores 🍪</h2>
+            <p class="section-subtitle">Escolha o seu favorito e monte seu pedido</p>
+        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="~/images/cookie.jpg" class="card-img-top" alt="Cookie de Nutella">
-                    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img src="~/images/tradicional.jpg" class="card-img-top" alt="Cookie Tradicional">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Cookie Tradicional</h5>
+                        <p class="card-text">Massa amanteigada com muitas gotas de chocolate.</p>
+                        <p class="product-price">R$ 15,00</p>
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <input type="number" class="form-control form-control-sm qty-input" style="width:70px" min="1" value="1">
+                            <button class="btn btn-primary btn-sm flex-grow-1 add-to-cart-btn"
+                                    data-name="Cookie Tradicional"
+                                    data-price="15.00">
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img src="~/images/nutella.jpg" class="card-img-top" alt="Cookie de Nutella">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Cookie de Nutella</h5>
                         <p class="card-text">Massa amanteigada com recheio cremoso.</p>
-                        <p><strong>R$ 12,00</strong></p>
+                        <p class="product-price">R$ 15,00</p>
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <input type="number" class="form-control form-control-sm qty-input" style="width:70px" min="1" value="1">
+                            <button class="btn btn-primary btn-sm flex-grow-1 add-to-cart-btn"
+                                    data-name="Cookie de Nutella"
+                                    data-price="15.00">
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="~/images/cookie-redvelvet.jpg" class="card-img-top" alt="Cookie Red Velvet">
-                    <div class="card-body">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img src="~/images/redvellvet.jpg" class="card-img-top" alt="Cookie Red Velvet">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Cookie Red Velvet</h5>
                         <p class="card-text">Sabor marcante com massa macia e recheio especial.</p>
-                        <p><strong>R$ 14,00</strong></p>
+                        <p class="product-price">R$ 13,00</p>
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <input type="number" class="form-control form-control-sm qty-input" style="width:70px" min="1" value="1">
+                            <button class="btn btn-primary btn-sm flex-grow-1 add-to-cart-btn"
+                                    data-name="Cookie Red Velvet"
+                                    data-price="13.00">
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="~/images/cookie-ovomaltine.jpg" class="card-img-top" alt="Cookie de Ovomaltine">
-                    <div class="card-body">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img src="~/images/ovomaltine.jpeg" class="card-img-top" alt="Cookie de Ovomaltine">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Cookie de Ovomaltine</h5>
                         <p class="card-text">Massa de chocolate com crocância irresistível.</p>
-                        <p><strong>R$ 13,00</strong></p>
+                        <p class="product-price">R$ 13,00</p>
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <input type="number" class="form-control form-control-sm qty-input" style="width:70px" min="1" value="1">
+                            <button class="btn btn-primary btn-sm flex-grow-1 add-to-cart-btn"
+                                    data-name="Cookie de Ovomaltine"
+                                    data-price="13.00">
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,44 +103,67 @@
     </div>
 </section>
 
-<section id="como-pedir" class="py-5">
+<section id="como-pedir">
     <div class="container">
-        <h2>Como pedir</h2>
-
-        <ol>
-            <li>Escolha seus sabores favoritos.</li>
-            <li>Chame a gente no WhatsApp.</li>
-            <li>Combine a entrega ou retirada.</li>
-        </ol>
-
-        <a href="https://wa.me/seu-numero" class="btn btn-success">Pedir pelo WhatsApp</a>
+        <div class="section-title">
+            <h2>Como pedir 🛒</h2>
+            <p class="section-subtitle">Simples, rápido e com muito sabor</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4 text-center">
+                <div class="step-card p-4">
+                    <div class="step-number">1</div>
+                    <h5>Escolha os sabores</h5>
+                    <p class="text-muted mb-0">Selecione seus cookies favoritos e a quantidade.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-card p-4">
+                    <div class="step-number">2</div>
+                    <h5>Fale conosco</h5>
+                    <p class="text-muted mb-0">Envie seu pedido pelo WhatsApp.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-card p-4">
+                    <div class="step-number">3</div>
+                    <h5>Combine a entrega</h5>
+                    <p class="text-muted mb-0">Acertamos juntos a entrega ou retirada.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="@SocialOptions.Value.WhatsAppUrl" class="btn btn-success btn-lg">Pedir pelo WhatsApp</a>
+        </div>
     </div>
 </section>
 
-<section id="sobre" class="py-5">
+<section id="sobre">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center g-5">
             <div class="col-md-6">
-                <h2>Sobre nós</h2>
-                <p>
+                <h2>Sobre nós ❤️</h2>
+                <p class="lead">
                     A Holy Cookies nasceu do desejo de transformar carinho, sabor e momentos especiais
                     em cookies artesanais feitos com atenção aos detalhes.
                 </p>
             </div>
-
             <div class="col-md-6">
-                <img src="~/images/sobre-nos.jpg" class="img-fluid rounded" alt="Sobre a Holy Cookies">
+                <img src="~/images/sobre-nos.jpg" class="img-fluid sobre-img" alt="Sobre a Holy Cookies">
             </div>
         </div>
     </div>
 </section>
 
-<section id="contato" class="py-5">
-    <div class="container">
-        <h2>Contato</h2>
-        <p>Fale com a Holy Cookies e faça seu pedido.</p>
-
-        <a href="https://wa.me/seu-numero" class="btn btn-success">WhatsApp</a>
-        <a href="https://instagram.com/seu-perfil" class="btn btn-outline-dark">Instagram</a>
+<section id="contato">
+    <div class="container text-center">
+        <div class="section-title">
+            <h2>Fale com a gente 💬</h2>
+            <p class="section-subtitle">Tem alguma dúvida ou quer fazer um pedido especial? A gente adoraria ouvir você!</p>
+        </div>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="@SocialOptions.Value.WhatsAppUrl" class="btn btn-success btn-lg">WhatsApp</a>
+            <a href="@SocialOptions.Value.InstagramUrl" class="btn btn-outline-dark btn-lg" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
     </div>
 </section>

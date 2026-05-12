@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<HolyCookies.Options.SocialLinksOptions>(
+    builder.Configuration.GetSection("SocialLinks"));
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
